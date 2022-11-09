@@ -36,7 +36,7 @@ batch_size = 40
 N = 32  # mesh grid
 units = 5000
 
-num_epochs = 40000
+num_epochs = 30000
 mc_alpha = 0
 
 nt_train_data = 100

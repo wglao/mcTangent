@@ -313,7 +313,7 @@ def plot_compare(U_True, U_Pred, filename):
         ax = fig.add_subplot(1, 5, i+1)
         l1 = ax.plot(x, ut, '-', label='True')
         l2 = ax.plot(x, up, '--', label='Predicted')
-        ax.set_aspect('equal', adjustable='box')
+        ax.set_aspect('auto', adjustable='box')
         ax.set_xticks([])
         ax.set_yticks([])
         ax.set_title('t = ' + str(Plot_Steps[i]))

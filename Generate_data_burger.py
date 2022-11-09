@@ -81,7 +81,7 @@ def single_step_forward_solver(un, vn, dt):
         + nu * dt / dx ** 2 * (jnp.dot(vn , shift_bot_left) - 2 * vn + jnp.dot(vn , shift_top_right))
         + nu * dt / dy ** 2 * (jnp.dot(shift_top_right , vn) - 2 * vn + jnp.dot(shift_bot_left , vn))
     )
-    return u, vn
+    return u, v
 
 def generate_data_solver(IBC, dt, Nt):
     U_save = np.zeros((Nt+1, N**2)) # Nt + 1 for including the intial data
@@ -123,10 +123,14 @@ print(U_data_train.shape)
 U_train_data = pd.DataFrame({'Observations': U_data_train.flatten()})
 U_train_data.to_csv('data/U_burger_train_data' + str(num_train_samples) + '_Nt_' + str(nt_train_data) + '.csv', index=False)
 
+V_train_data = pd.DataFrame({'Observations': V_data_train.flatten()})
+V_train_data.to_csv('data/V_burger_train_data' + str(num_train_samples) + '_Nt_' + str(nt_train_data) + '.csv', index=False)
+
 
 # %%
-Train_data = pd.read_csv('data/U_burger_train_data' + str(num_train_samples) + '_Nt_' + str(nt_train_data) + '.csv') 
-Train_data = np.reshape(Train_data.to_numpy(), (num_train_samples, nt_train_data+1, N**2))
+Train_data_u = pd.read_csv('data/U_burger_train_data' + str(num_train_samples) + '_Nt_' + str(nt_train_data) + '.csv') 
+Train_data_v = pd.read_csv('data/V_burger_train_data' + str(num_train_samples) + '_Nt_' + str(nt_train_data) + '.csv') 
+Train_data = np.reshape(np.concatenate(Train_data_u.to_numpy(), Train_data_v.to_numpy()), (2, num_train_samples, nt_train_data+1, N**2))
 
 Train_data.shape
 

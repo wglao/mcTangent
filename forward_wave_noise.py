@@ -29,7 +29,7 @@ num_test = 10
 n_seq = 1
 n_seq_mc = 1
 
-learning_rate = 5e-5
+learning_rate = 1e-4
 layers = 1
 batch_size = 40
 
@@ -37,7 +37,7 @@ N = 32  # mesh grid
 units = 5000
 
 num_epochs = int(5e4)
-mc_alpha = 1e5
+mc_alpha = 0
 
 nt_train_data = 100
 nt_test_data = 500

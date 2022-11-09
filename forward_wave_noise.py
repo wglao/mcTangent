@@ -118,7 +118,13 @@ print('=' * 20 + ' >> Success!')
 
 #! Step 3: Forward solver (single time step)
 def single_solve_forward(un):
+    # use different difference schemes for edge case
+    lu = len(un)
     u = un + (- dt / dx * (jnp.roll(un, -1) - jnp.roll(un, 1)) / 2 )
+    uleft = un[0] + (dt / dx / 2 * (3*un[0] - 4*un[1] + un[2]))
+    uright = un[lu-1] + (dt / -dx / 2 * (3*un[lu-1] - 4*un[lu-2] + un[lu-3]))
+    u = u.at[0].set(uleft)
+    u = u.at[lu-1].set(uright)
     return u
 
 #@jit

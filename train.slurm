@@ -23,25 +23,27 @@
 #SBATCH -o mcTtrain.o%j       # Name of stdout output file
 #SBATCH -e mcTtrain.e%j       # Name of stderr error file
 #SBATCH -p gpu-a100           # Queue (partition) name
-#SBATCH -N 4                  # Total # of nodes
-#SBATCH -n 512                  # Total # of mpi tasks (should be 1 for serial)
-#SBATCH -t 01:30:00           # Run time (hh:mm:ss)
+#SBATCH -N 1                  # Total # of nodes
+#SBATCH -n 128                  # Total # of mpi tasks (should be 1 for serial)
+#SBATCH -t 01:00:00           # Run time (hh:mm:ss)
 #SBATCH --mail-type=all       # Send email at begin and end of job
 #SBATCH -A DMS21058           # Project/Allocation name (req'd if you have more than 1)
 #SBATCH --mail-user=wgl@tacc.utexas.edu
 
 # Any other commands must follow all #SBATCH directives...
-cp -r toMove $SCRATCH
-cd $SCRATCH/toMove
+cp forward_wave.py Generate_data_wave.py parameters_wave.py $SCRATCH
+cd $SCRATCH
+mkdir data; mkdir figs; mkdir Network
 
 module list
 pwd
 date
 
 # Launch serial code...
-./forward_wave.py         # Do not use ibrun or any other MPI launcher
-
-cp $SCRATCH/toMove/figs/* ./figs
-rm -rf $SCRATCH/toMove
+python Generate_data_wave.py
+python forward_wave.py
 
 cd $HOME/PHO-ICES/mcTangent
+cp $SCRATCH/* 
+rm -rf $SCRATCH/*
+

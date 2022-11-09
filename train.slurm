@@ -28,7 +28,7 @@
 #SBATCH -t 01:00:00           # Run time (hh:mm:ss)
 #SBATCH --mail-type=all       # Send email at begin and end of job
 #SBATCH -A DMS21058           # Project/Allocation name (req'd if you have more than 1)
-#SBATCH --mail-user=wgl@tacc.utexas.edu
+#SBATCH --mail-user=wesleygarlao@utexas.edu
 
 # Any other commands must follow all #SBATCH directives...
 cp forward_wave.py Generate_data_wave.py parameters_wave.py $SCRATCH

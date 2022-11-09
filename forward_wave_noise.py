@@ -21,32 +21,11 @@ import pickle
 # config.update("jax_enable_x64", True)
 
 #! Step : 0 - Generate_data_initilizers
-# ? Training inputs
-num_train = 200
-num_test = 100
 
-
-n_seq = 1
-n_seq_mc = 1
-
-learning_rate = 1e-4
-layers = 1
-batch_size = 40
-
-N = 32  # mesh grid
-units = 5000
-
-num_epochs = int(5e4)
 mc_alpha = 1e5
-
-nt_train_data = 100
-nt_test_data = 500
-dt = 1e-2
-facdt = 1
-
+noise_level = 0.02
 
 Plot_Steps = [0, 50, 100, 200, 500]
-noise_level = 0.02
 
 # initialize physic parameters
 # initialize parameters
@@ -54,7 +33,7 @@ import parameters_wave
 from parameters_wave import *
 
 # ? Step 0.2 - Uploading wandb
-filename = 'wave1d_noise_' + str(noise_level) + 'dt_train-test_' + str(dt) + '-' + str(dt_test) + '_seq_n_mc_' + str(n_seq_mc) +'_forward_mc_train_d' + str(num_train) + '_alpha_' + str(mc_alpha) + '_lr_' + str(learning_rate) + '_batch_' + str(batch_size) + '_nseq_' + str(n_seq) + '_layer_' + str(layers) + 'neurons' + str(units) + '_epochs_' + str(num_epochs)
+filename = 'wave1d_noise_' + str(noise_level) + '_dt_train-test_' + str(dt) + '-' + str(dt_test) + '_seq_n_mc_' + str(n_seq_mc) +'_forward_mc_train_d' + str(num_train) + '_alpha_' + str(mc_alpha) + '_lr_' + str(learning_rate) + '_batch_' + str(batch_size) + '_nseq_' + str(n_seq) + '_layer_' + str(layers) + 'neurons' + str(units) + '_epochs_' + str(num_epochs)
 
 wandb.init(project="mcTangent")
 wandb.config.problem = 'wave1D_noise'
@@ -80,7 +59,7 @@ print(Train_data.shape)
 print('=' * 20 + ' >>')
 print('Loading test data ...')
 
-Test_data = pd.read_csv('data/U_wave1d_test_data' + str(num_test) + '_Nt_' + str(nt_test_data) + '_dt_test_' + str(dt_test) + '.csv')
+Test_data = pd.read_csv('data/U_wave1d_test_data_' + str(num_test) + '_Nt_' + str(nt_test_data) + '_dt_test_' + str(dt_test) + '.csv')
 Test_data = np.reshape(Test_data.to_numpy(), (num_test, nt_test_data+1, N))
 
 print(Test_data.shape)
@@ -312,8 +291,8 @@ def plot_compare(U_True, U_Pred, filename):
         ut = jnp.reshape(U_True[Plot_Steps[i], :], (N, 1))
         up = jnp.reshape(U_Pred[Plot_Steps[i], :], (N, 1))
         ax = fig.add_subplot(1, 5, i+1)
-        l1 = ax.plot(x, ut, '-', label='True')
-        l2 = ax.plot(x, up, '--', label='Predicted')
+        l1 = ax.plot(x, ut, '-', linewidth=2, label='True')
+        l2 = ax.plot(x, up, '--', linewidth=2, label='Predicted')
         ax.set_aspect('auto', adjustable='box')
         ax.set_xticks([])
         ax.set_yticks([])

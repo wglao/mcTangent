@@ -21,31 +21,8 @@ import pickle
 # config.update("jax_enable_x64", True)
 
 #! Step : 0 - Generate_data_initilizers
-# ? Training inputs
-num_train = 200
-num_test = 100
 
-
-n_seq = 1
-n_seq_mc = 1
-
-learning_rate = 1e-4
-layers = 1
-batch_size = 40
-
-N = 32  # mesh grid
-units = 5000
-
-num_epochs = 30000
 mc_alpha = 0
-
-nt_train_data = 100
-nt_test_data = 500
-dt = 1e-2
-facdt = 1
-
-
-Plot_Steps = [0, 50, 100, 200, 500]
 
 # initialize physic parameters
 # initialize parameters
@@ -311,8 +288,8 @@ def plot_compare(U_True, U_Pred, filename):
         ut = jnp.reshape(U_True[Plot_Steps[i], :], (N, 1))
         up = jnp.reshape(U_Pred[Plot_Steps[i], :], (N, 1))
         ax = fig.add_subplot(1, 5, i+1)
-        l1 = ax.plot(x, ut, '-', label='True')
-        l2 = ax.plot(x, up, '--', label='Predicted')
+        l1 = ax.plot(x, ut, '-', linewidth=2, label='True')
+        l2 = ax.plot(x, up, '--', linewidth=2, label='Predicted')
         ax.set_aspect('auto', adjustable='box')
         ax.set_xticks([])
         ax.set_yticks([])

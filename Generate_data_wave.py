@@ -23,12 +23,6 @@ import matplotlib.pyplot as plt
 from matplotlib import cm  # Colour map
 import matplotlib.animation as animation
 
-# %%
-# ## 0 - Generate_data_initilizers
-num_truncated_series = 15
-num_train_samples = 200
-num_test_samples = 100
-
 # random seed for training data
 key_data_train_a = random.PRNGKey(1)
 key_data_train_b = random.PRNGKey(2)

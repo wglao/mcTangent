@@ -23,7 +23,7 @@ import pickle
 #! Step : 0 - Generate_data_initilizers
 # ? Training inputs
 num_train = 200
-num_test = 10
+num_test = 100
 
 
 n_seq = 1
@@ -37,7 +37,7 @@ N = 32  # mesh grid
 units = 5000
 
 num_epochs = int(5e4)
-mc_alpha = 0
+mc_alpha = 1e5
 
 nt_train_data = 100
 nt_test_data = 500
@@ -50,8 +50,8 @@ noise_level = 0.02
 
 # initialize physic parameters
 # initialize parameters
-import parameters
-from parameters import *
+import parameters_wave
+from parameters_wave import *
 
 # ? Step 0.2 - Uploading wandb
 filename = 'wave1d_noise_' + str(noise_level) + 'dt_train-test_' + str(dt) + '-' + str(dt_test) + '_seq_n_mc_' + str(n_seq_mc) +'_forward_mc_train_d' + str(num_train) + '_alpha_' + str(mc_alpha) + '_lr_' + str(learning_rate) + '_batch_' + str(batch_size) + '_nseq_' + str(n_seq) + '_layer_' + str(layers) + 'neurons' + str(units) + '_epochs_' + str(num_epochs)
@@ -67,9 +67,6 @@ wandb.config.layer = layers
 wandb.config.method = 'Dense_net'
 
 # ? Step 0.3 - Spectral method for 2D Navier-Stoke equation initialize parameters
-# initialize physic parameters
-# initialize parameters
-from parameters import *
 
 #! Step 1: Loading data
 # ? 1.1 Loading data by pandas
@@ -307,7 +304,7 @@ x = np.linspace(0, 1, N)
 
 def plot_compare(U_True, U_Pred, filename):
 
-    fig = plt.figure(figsize=(64,40), dpi=1800)
+    fig = plt.figure(figsize=(32,10))
     fig.patch.set_facecolor('xkcd:white')
 
     # Compare solutions
@@ -317,7 +314,7 @@ def plot_compare(U_True, U_Pred, filename):
         ax = fig.add_subplot(1, 5, i+1)
         l1 = ax.plot(x, ut, '-', label='True')
         l2 = ax.plot(x, up, '--', label='Predicted')
-        ax.set_aspect('equal', adjustable='box')
+        ax.set_aspect('auto', adjustable='box')
         ax.set_xticks([])
         ax.set_yticks([])
         ax.set_title('t = ' + str(Plot_Steps[i]))

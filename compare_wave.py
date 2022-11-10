@@ -108,11 +108,11 @@ for i in range(n_plot):
         umn = jnp.reshape(U_mc[Plot_Steps[i], :], (N, 1))
         
         ax = fig.add_subplot(1, n_plot, i+1)
-        l1 = ax.plot(x, ut, '-', linewidth=2, label='True')
-        l2 = ax.plot(x, ud, ':o', markevery=5, fillstyle='none', linewidth=2, label='Data only')
-        l3 = ax.plot(x, um, ':v', markevery=5, fillstyle='none', linewidth=2, label='Model constrained (1e5)')
-        l4 = ax.plot(x, un, ':x', markevery=5, linewidth=2, label='With noise (0.02)')
-        l5 = ax.plot(x, umn, ':+', markevery=5, linewidth=2, label='Model constrained (1e5) and with noise (0.02)')
+        l1 = ax.plot(x, ut, '-', linewidth=3, label='True')
+        l2 = ax.plot(x, ud, ':o', markevery=5, fillstyle='none', linewidth=3, label='Data only')
+        l3 = ax.plot(x, um, ':v', markevery=5, fillstyle='none', linewidth=3, label='Model constrained (1e5)')
+        l4 = ax.plot(x, un, ':x', markevery=5, linewidth=3, label='With noise (0.02)')
+        l5 = ax.plot(x, umn, ':+', markevery=5, linewidth=3, label='Model constrained (1e5) and with noise (0.02)')
 
         # ax.set_aspect('auto', adjustable='box')
         ax.set_xticks([])

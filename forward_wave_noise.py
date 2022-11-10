@@ -22,7 +22,7 @@ import pickle
 
 #! Step : 0 - Generate_data_initilizers
 
-mc_alpha = 1e5
+mc_alpha = 0
 noise_level = 0.02
 
 Plot_Steps = [0, 50, 100, 200, 500]

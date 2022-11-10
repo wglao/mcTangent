@@ -38,4 +38,4 @@ dx = 1 / N
 
 n_plot = 5
 # Plot_Steps = [0, 50, 100, 200, 500]
-Plot_Steps = np.linspace(0,nt_test_data, n_plot)
+Plot_Steps = np.linspace(0,nt_test_data, n_plot, dtype=int)

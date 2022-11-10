@@ -22,7 +22,7 @@ import pickle
 
 #! Step : 0 - Generate_data_initilizers
 
-mc_alpha = 0
+mc_alpha = 1e5
 
 # initialize physic parameters
 # initialize parameters

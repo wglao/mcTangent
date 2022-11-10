@@ -1,5 +1,16 @@
 # sets parameters for use in Generate_data and Training scripts
 import numpy as np
+from jax import random
+
+# random seed for training data
+key_data_train_a = random.PRNGKey(1)
+key_data_train_b = random.PRNGKey(2)
+
+# random seed for test data
+key_data_test_a = random.PRNGKey(3)
+key_data_test_b = random.PRNGKey(4)
+
+key_data_noise = random.PRNGKey(5)
 
 # Generate_data_initilizers
 num_train_samples = 200
@@ -36,6 +47,6 @@ nu = 0.01
 N = 200
 dx = 1 / N
 
-n_plot = 5
+n_plot = 3
 # Plot_Steps = [0, 50, 100, 200, 500]
 Plot_Steps = np.linspace(0,nt_test_data, n_plot, dtype=int)

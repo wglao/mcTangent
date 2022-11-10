@@ -23,16 +23,6 @@ import matplotlib.pyplot as plt
 from matplotlib import cm  # Colour map
 import matplotlib.animation as animation
 
-# random seed for training data
-key_data_train_a = random.PRNGKey(1)
-key_data_train_b = random.PRNGKey(2)
-
-# random seed for test data
-key_data_test_a = random.PRNGKey(3)
-key_data_test_b = random.PRNGKey(4)
-
-key_data_noise = random.PRNGKey(5)
-
 #! 1 - Spectral method for 2D Navier-Stoke equation initialize parameters
 # initialize parameters
 import parameters_wave

@@ -97,7 +97,7 @@ else:
     U_noisy = neural_solver_batch(noisy_params, truth)[plot_sample, :, :]
     U_mcn = neural_solver_batch(mcn_params, truth)[plot_sample, :, :]
 
-fontsize = 16
+fontsize = 8
 fig = plt.figure(figsize=((n_plot+1)*fontsize,fontsize))
 plt.rcParams.update({'font.size': fontsize})
 for i in range(n_plot):

@@ -17,7 +17,7 @@ truth = pd.read_csv('data/U_wave1d_test_data_' + str(num_test_samples) + '_Nt_' 
 truth = np.reshape(truth.to_numpy(), (num_test_samples, nt_test_data+1, N))
 
 # randomized initial condition
-input_noise = True
+input_noise = False
 if input_noise:
     ns, nt, nx = truth.shape
     nosie_vec = jax.random.normal(key_data_noise, truth.shape)
@@ -97,7 +97,7 @@ else:
     U_noisy = neural_solver_batch(noisy_params, truth)[plot_sample, :, :]
     U_mcn = neural_solver_batch(mcn_params, truth)[plot_sample, :, :]
 
-fontsize = 10
+fontsize = 16
 fig = plt.figure(figsize=((n_plot+1)*fontsize,fontsize))
 plt.rcParams.update({'font.size': fontsize})
 for i in range(n_plot):

@@ -149,13 +149,13 @@ Test_data = np.reshape(Test_data.to_numpy(), (num_test_samples, nt_test_data+1, 
 Test_data.shape
 
 ns, nt, nx = U_data_train.shape
-nosie_vec = jax.random.normal(key_data_noise, U_data_train.shape)
+noise_vec = jax.random.normal(key_data_noise, U_data_train.shape)
 noise_level = 0.01
 U_data_train_noise = np.zeros(U_data_train.shape)
 
 for i in range(ns):
     for j in range(nt):
-            U_data_train_noise[i,j,:] = U_data_train[i,j,:] + noise_level * nosie_vec[i,j,:] * np.max(U_data_train[i,j,:])
+            U_data_train_noise[i,j,:] = U_data_train[i,j,:] + noise_level * noise_vec[i,j,:] * np.max(U_data_train[i,j,:])
 
 U_train_data_noise = pd.DataFrame({'Observations': U_data_train_noise.flatten()})
 U_train_data_noise.to_csv('data/U_wave1d_train_data_noise_' + str(noise_level) +'_d_'  + str(num_train_samples) + '_Nt_' + str(nt_train_data) + '.csv', index=False)
@@ -168,7 +168,7 @@ U_data_train_noise = np.zeros(U_data_train.shape)
 
 for i in range(ns):
     for j in range(nt):
-            U_data_train_noise[i,j,:] = U_data_train[i,j,:] + noise_level * nosie_vec[i,j,:] * np.max(U_data_train[i,j,:])
+            U_data_train_noise[i,j,:] = U_data_train[i,j,:] + noise_level * noise_vec[i,j,:] * np.max(U_data_train[i,j,:])
 
 U_train_data_noise = pd.DataFrame({'Observations': U_data_train_noise.flatten()})
 U_train_data_noise.to_csv('data/U_wave1d_train_data_noise_' + str(noise_level) +'_d_'  + str(num_train_samples) + '_Nt_' + str(nt_train_data) + '.csv', index=False)
